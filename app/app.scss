@@ -1,2 +1,36 @@
-// Global SCSS styling
-// @see https://docs.nativescript.org/ui/styling
+.fa {
+  font-family: "Font Awesome 5 Free", "fa-regular-400";
+  font-weight: 400;
+}
+
+.fas {
+  font-family: "Font Awesome 5 Free", "fa-solid-900";
+  font-weight: 900;
+}
+
+.fab {
+  font-family: "Font Awesome 5 Free", "fa-brands-400";
+  font-weight: 400;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.va-center {
+  vertical-align: center;
+}
+
+@for $i from 1 through 64 {
+  .fs-#{$i} {
+    font-size: $i;
+  }
+
+  .mt-#{$i} {
+    margin-top: $i;
+  }
+
+  .p-#{$i} {
+    padding: $i;
+  }
+}
