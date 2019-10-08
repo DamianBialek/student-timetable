@@ -10,9 +10,6 @@
         },
         components: {
             Layout,
-        },
-        created() {
-            console.log("Navigator");
         }
     }
 </script>
