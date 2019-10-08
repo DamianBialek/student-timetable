@@ -21,7 +21,7 @@
   vertical-align: center;
 }
 
-@for $i from 1 through 64 {
+@for $i from 0 through 64 {
   .fs-#{$i} {
     font-size: $i;
   }

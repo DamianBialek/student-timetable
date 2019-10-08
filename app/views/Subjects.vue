@@ -10,12 +10,12 @@
                     </StackLayout>
                 </StackLayout>
                 <StackLayout row="0" col="1" class="p-10 text-center">
-                    <Label text="Student's timetable" class="fs-18"></Label>
+                    <Label text="Przedmioty" class="fs-18"></Label>
                 </StackLayout>
             </GridLayout>
         </AppActionBar>
         <StackLayout orientation="vertical">
-            <Label text="Home" class="fs-25" />
+            <Label text="Przedmioty" class="fs-25" />
         </StackLayout>
     </Page>
 </template>
@@ -24,10 +24,13 @@
     import AppActionBar from "~/components/AppActionBar.vue";
 
     export default {
-        name: "Home",
+        name: "Subjects",
         components: {
             AppActionBar
         },
+        created() {
+            console.log("Subjects");
+        }
     }
 </script>
 

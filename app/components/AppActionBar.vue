@@ -14,11 +14,5 @@
     ActionBar {
         background-color: #53ba82;
         color: #ffffff;
-        text-align: center;
-    }
-
-    .navbar-btn {
-        color: #ffffff;
-        width: 60;
     }
 </style>

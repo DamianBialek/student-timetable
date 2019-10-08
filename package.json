@@ -5,7 +5,8 @@
   "author": "Damian <damianbiaek1997@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "tns run android --device API29 --no-hmr"
+    "start": "tns run android --device API29 --no-hmr",
+    "preview": "tns preview --no-hmr"
   },
   "nativescript": {
     "id": "org.nativescript.application",

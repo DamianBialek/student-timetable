@@ -1,52 +1,18 @@
 <template>
-    <Page actionBarHidden="true">
-        <RadSideDrawer @drawerClosed="$store.dispatch('closeDrawer')" ref="drawer" showOverNavigation="true" class="sidedrawer">
-            <StackLayout ~drawerContent>
-                <DrawerContent></DrawerContent>
-            </StackLayout>
-            <StackLayout ~mainContent>
-                <MainContent @openDrawer="onOpenDrawerTap"></MainContent>
-            </StackLayout>
-        </RadSideDrawer>
-    </Page>
+    <Layout></Layout>
 </template>
 
 <script>
-    import DrawerContent from "./DrawerContent.vue";
-    import MainContent from "./MainContent.vue";
-
+    import Layout from "~/layout/Layout";
     export default {
-        components: {
-            MainContent,
-            DrawerContent
-        },
         data() {
-            return {
-
-            }
+            return {}
         },
-        computed: {
-          openDrawer: function () {
-              return this.$store.getters.openDrawer;
-          }
+        components: {
+            Layout,
         },
-        methods: {
-            onOpenDrawerTap() {
-                this.$refs.drawer.nativeView.showDrawer();
-            },
-            onCloseDrawerTap() {
-                this.$refs.drawer.nativeView.closeDrawer();
-            },
-        },
-        watch: {
-            openDrawer: function () {
-                if(this.openDrawer) this.onOpenDrawerTap();
-                else this.onCloseDrawerTap();
-            }
+        created() {
+            console.log("Navigator");
         }
     }
 </script>
-
-<style scoped lang="scss">
-
-</style>

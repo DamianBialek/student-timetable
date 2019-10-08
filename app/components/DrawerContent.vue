@@ -6,10 +6,10 @@
         <ScrollView row="1" class="sidedrawer-content">
             <StackLayout class="mt-15">
                 <GridLayout class="sidedrawer-list-item">
-                    <Label col="0" text="Home" />
+                    <Label @tap="navigate('/home')" col="0" text="Home" />
                 </GridLayout>
                 <GridLayout class="sidedrawer-list-item">
-                    <Label col="0" text="Subjects" />
+                    <Label @tap="navigate('/subjects')" col="0" text="Subjects" />
                 </GridLayout>
             </StackLayout>
         </ScrollView>
@@ -18,7 +18,13 @@
 
 <script>
     export default {
-        name: "DrawerContent"
+        name: "DrawerContent",
+        methods: {
+            navigate: function (to) {
+                this.$navigator.navigate(to);
+                this.$store.dispatch('closeDrawer')
+            }
+        }
     }
 </script>
 
