@@ -5,7 +5,7 @@
                 <DrawerContent></DrawerContent>
             </StackLayout>
             <StackLayout ~mainContent>
-                <Navigator defaultRoute="/home"></Navigator>
+                <Navigator @loaded="console.log('loaded')" defaultRoute="/home"></Navigator>
             </StackLayout>
         </RadSideDrawer>
     </Page>

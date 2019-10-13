@@ -16,7 +16,7 @@
         props: {
             color: {
                 type: String,
-                default: 'black'
+                default: '#ffffff'
             },
             name: {
                 type: String,

@@ -34,7 +34,6 @@ Vue.prototype.$navigator.navigate = function(to, options) {
       }
       return false
     }
-
     return topmost().currentPage.__vuePageRef__.$navigateTo(matchedRoute.component, options);
 };
 

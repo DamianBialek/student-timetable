@@ -5,11 +5,14 @@
         </StackLayout>
         <ScrollView row="1" class="sidedrawer-content">
             <StackLayout class="mt-15">
-                <GridLayout class="sidedrawer-list-item">
+                <GridLayout :class="['sidedrawer-list-item', {selected: currentRoute === 'Home'}]">
                     <Label @tap="navigate('/home')" col="0" text="Home" />
                 </GridLayout>
-                <GridLayout class="sidedrawer-list-item">
-                    <Label @tap="navigate('/subjects')" col="0" text="Subjects" />
+                <GridLayout :class="['sidedrawer-list-item', {selected: currentRoute === 'Subjects'}]">
+                    <Label @tap="navigate('/subjects')" col="0" text="Przedmioty" />
+                </GridLayout>
+                <GridLayout :class="['sidedrawer-list-item', {selected: currentRoute === 'Lecturers'}]">
+                    <Label @tap="navigate('/lecturers')" col="0" text="Wykładowcy" />
                 </GridLayout>
             </StackLayout>
         </ScrollView>
@@ -19,10 +22,25 @@
 <script>
     export default {
         name: "DrawerContent",
+        data() {
+            return {
+                currentRoute: '',
+            }
+        },
+        computed: {
+          getCurrentRouteName() {
+              return this.$navigator.route
+          }
+        },
         methods: {
             navigate: function (to) {
                 this.$navigator.navigate(to);
                 this.$store.dispatch('closeDrawer')
+            }
+        },
+        watch:{
+            getCurrentRouteName(newRoute) {
+                this.currentRoute = !!newRoute.meta && newRoute.meta.name || '';
             }
         }
     }

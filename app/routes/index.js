@@ -1,12 +1,39 @@
 import Home from '~/views/Home.vue'
-import Subjects from "~/views/Subjects";
+import Subjects from "~/views/Subjects/Subjects.vue";
+import AddNewSubject from "~/views/Subjects/AddNewSubject.vue";
+import Lecturers from "~/views/Lecturers/Lecturers.vue";
+import AddNewLecturer from "~/views/Lecturers/AddNewLecturer";
 
 
 export default {
     '/home': {
         component: Home,
+        meta: {
+            name: 'Home'
+        }
     },
     '/subjects': {
         component: Subjects,
+        meta: {
+            name: 'Subjects'
+        }
+    },
+    '/addNewSubject': {
+        component: AddNewSubject,
+        meta: {
+            name: 'AddNewSubject'
+        }
+    },
+    '/lecturers': {
+        component: Lecturers,
+        meta: {
+            name: 'Lecturers'
+        }
+    },
+    '/addNewLecturer': {
+        component: AddNewLecturer,
+        meta: {
+            name: 'AddNewLecturer'
+        }
     }
 }

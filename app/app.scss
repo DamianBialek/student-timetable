@@ -1,3 +1,6 @@
+$green: #53ba82;
+$fontcolor: #ffffff;
+
 .fa {
   font-family: "Font Awesome 5 Free", "fa-regular-400";
   font-weight: 400;
@@ -33,4 +36,31 @@
   .p-#{$i} {
     padding: $i;
   }
+
+  .pr-#{$i} {
+    padding-right: $i;
+  }
+
+  .pl-#{$i} {
+    padding-left: $i;
+  }
+
+  .px-#{$i} {
+    padding-left: $i;
+    padding-right: $i;
+  }
+
+  .py-#{$i} {
+    padding-top: $i;
+    padding-bottom: $i;
+  }
+}
+
+.btn {
+  background-color: $green;
+  border-radius: 20;
+  font-size: 14;
+  font-weight: bold;
+  height: auto;
+  color: $fontcolor;
 }
