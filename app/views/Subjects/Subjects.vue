@@ -45,6 +45,9 @@
             subjects() {
                 return this.$store.getters.subjects;
             }
+        },
+        created() {
+            this.$store.dispatch("loadSubjects");
         }
     }
 </script>

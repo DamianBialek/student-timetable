@@ -12,6 +12,8 @@ Vue.component(FontIcon.name, FontIcon);
 Vue.use(RadSideDrawerPlugin);
 Vue.use(Navigator, { routes });
 
+store.dispatch("initDb");
+
 TNSFontIcon.debug = false;
 TNSFontIcon.paths = {
   'fa': './assets/css/fontawesome.min.css',

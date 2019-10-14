@@ -45,6 +45,9 @@
             lecturers() {
                 return this.$store.getters.lecturers;
             }
+        },
+        created() {
+            this.$store.dispatch("loadLecturers");
         }
     }
 </script>
