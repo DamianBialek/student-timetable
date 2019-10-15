@@ -10,10 +10,19 @@ export default {
         },
         addNewSubject(state, payload) {
             state.subjects.push(payload);
+        },
+        updateSubject(state, payload) {
+            Vue.set(state, 'subjects', [
+                ...state.subjects.filter(({ id }) => id !== payload.id),
+                payload,
+            ]);
+        },
+        removeSubject(state, payload) {
+            Vue.set(state, 'subjects', [...state.subjects.filter(({ id }) => id !== payload.id)]);
         }
     },
     actions: {
-        createSubjectsTable({ commit, getters }) {
+        createSubjectsTable({ getters }) {
             const db = getters.db;
             db.execSQL("CREATE TABLE IF NOT EXISTS subjects (id INTEGER PRIMARY KEY AUTOINCREMENT, `name` VARCHAR(64), `lecturer` INTEGER)")
                 .then(() => {
@@ -24,20 +33,40 @@ export default {
         },
         addNewSubject({ commit, getters }, subject) {
             const db = getters.db;
-            db.execSQL("INSERT INTO subjects (`name`, `lecturer`) VALUES (?, ?)", [subject.name, subject.lecturer])
+            db.execSQL("INSERT INTO subjects (`name`, `lecturer`) VALUES (?, ?)", [subject.name, subject.lecturer.id])
                 .then(() => {
                     commit("addNewSubject", subject);
                 }, error => {
                     console.log("INSERT ERROR", error);
                 });
         },
+        updateSubject({ commit, getters }, subject) {
+            const db = getters.db;
+            db.execSQL("UPDATE subjects SET `name` = ?, `lecturer` = ? WHERE `id` = ? ", [subject.name, subject.lecturer.id, subject.id])
+                .then(() => {
+                    commit("updateSubject", subject);
+                    console.log("Success update subject !");
+                }, error => {
+                    console.log("UPDATE ERROR", error);
+                });
+        },
         loadSubjects({ commit, getters }) {
             const db = getters.db;
-            db.all("SELECT `name`, `lecturer` FROM subjects", [])
+            db.all("SELECT `id`, `name`, `lecturer` FROM subjects", [])
                 .then(result => {
                     commit("loadSubjects", result);
                 }, error => {
                     console.log("SELECT ERROR", error);
+                });
+        },
+        removeSubject({ commit, getters }, subject) {
+            const db = getters.db;
+            db.execSQL("DELETE FROM subjects WHERE `id` = ? ", [subject.id])
+                .then(() => {
+                    commit("removeSubject", subject);
+                    console.log("Success remove subject !");
+                }, error => {
+                    console.log("DELETE ERROR", error);
                 });
         }
     },

@@ -19,7 +19,7 @@
             </GridLayout>
         </AppActionBar>
         <StackLayout orientation="vertical" class="p-15" height="100%">
-            <ListView v-if="subjects.length" class="list-group" for="subject in subjects" separatorColor="transparent">
+            <ListView v-if="subjects.length" class="list-group" for="subject in subjects" separatorColor="transparent" @itemTap="editSubject">
                 <v-template>
                     <Label :text="subject.name" class="subject-name py-10" textWrap="true"></Label>
                 </v-template>
@@ -48,6 +48,11 @@
         },
         created() {
             this.$store.dispatch("loadSubjects");
+        },
+        methods: {
+            editSubject: function ({ item }) {
+                this.$navigator.navigate("/editSubject", { props: { subject: item } });
+            }
         }
     }
 </script>
@@ -64,7 +69,6 @@
     .subject-name {
         font-size: #ffffff;
     }
-
 
     ListView {
         height: 100%;

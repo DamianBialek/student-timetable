@@ -1,6 +1,7 @@
 import Home from '~/views/Home.vue'
 import Subjects from "~/views/Subjects/Subjects.vue";
 import AddNewSubject from "~/views/Subjects/AddNewSubject.vue";
+import EditSubject from "~/views/Subjects/EditSubject";
 import Lecturers from "~/views/Lecturers/Lecturers.vue";
 import AddNewLecturer from "~/views/Lecturers/AddNewLecturer";
 
@@ -22,6 +23,12 @@ export default {
         component: AddNewSubject,
         meta: {
             name: 'AddNewSubject'
+        }
+    },
+    '/editSubject': {
+        component: EditSubject,
+        meta: {
+            name: 'EditSubject'
         }
     },
     '/lecturers': {

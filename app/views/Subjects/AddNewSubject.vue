@@ -16,7 +16,7 @@
         </AppActionBar>
         <StackLayout orientation="vertical" width="100%" height="100%" class="p-15">
             <TextField v-model="subject.name" hint="Nazwa przedmiotu..."></TextField>
-            <TextField v-model="subject.lecturer" hint="Wykładowca..."></TextField>
+            <TextField editable="false" @tap="selectLecturer" v-model="subject.lecturer" hint="Wybierz wykładowcę..."></TextField>
             <Button text="Zapisz" class="btn mt-10" @tap="saveSubject"></Button>
         </StackLayout>
     </Page>
@@ -24,6 +24,7 @@
 
 <script>
     import AppActionBar from "~/components/AppActionBar.vue";
+    import SubjectSelectLecturer from "./components/SubjectSelectLecturer";
 
     export default {
         name: "AddNewSubjects",
@@ -42,6 +43,12 @@
             saveSubject: function () {
                 this.$store.dispatch("addNewSubject", this.subject);
                 this.$navigator.navigate("/subjects");
+            },
+            selectLecturer: function () {
+                this.$showModal(SubjectSelectLecturer, { props: { selectedLecturer: this.subject.lecturer.id || 1 } })
+                    .then((lecturer) => {
+                        this.subject.lecturer = lecturer;
+                    })
             }
         }
     }

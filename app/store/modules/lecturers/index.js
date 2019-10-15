@@ -13,7 +13,7 @@ export default {
         },
     },
     actions: {
-        createLecturersTable({ commit, getters }) {
+        createLecturersTable({ getters }) {
             const db = getters.db;
             db
                 .execSQL("CREATE TABLE IF NOT EXISTS lecturers (id INTEGER PRIMARY KEY AUTOINCREMENT, `name` VARCHAR(64), `surname` VARCHAR(64))")
@@ -34,7 +34,7 @@ export default {
         },
         loadLecturers({ commit, getters }) {
             const db = getters.db;
-            db.all("SELECT `name`, `surname` FROM lecturers", [])
+            return db.all("SELECT `id`, `name`, `surname` FROM lecturers", [])
                 .then(result => {
                     commit("loadLecturers", result);
                 }, error => {
@@ -44,5 +44,6 @@ export default {
     },
     getters: {
         lecturers: state => state.lecturers,
+        lecturer: state => (id) => state.lecturers.find(lecturer => lecturer.id === id),
     }
 }
