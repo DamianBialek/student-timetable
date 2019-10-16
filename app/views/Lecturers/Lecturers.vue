@@ -19,13 +19,13 @@
             </GridLayout>
         </AppActionBar>
         <StackLayout orientation="vertical" class="p-15" height="100%">
-            <ListView v-if="lecturers.length" class="list-group" for="lecturer in lecturers" separatorColor="transparent">
+            <ListView v-if="lecturers.length" class="list-group" for="lecturer in lecturers" separatorColor="transparent" @itemTap="editLecturer">
                 <v-template>
                     <Label :text="`${lecturer.name} ${lecturer.surname}`" class="lecturer-name py-10" textWrap="true"></Label>
                 </v-template>
             </ListView>
             <StackLayout v-else>
-                <Label text="Brak zapisanych wykładowców !" class="text-center fs-24"></Label>
+                <Label text="Brak zapisanych wykładowców !" class="text-center fs-24" textWrap="true"></Label>
                 <Button text="Dodaj nowego wykładowcę" class="btn mt-10" @tap="$navigator.navigate('/addNewLecturer')"></Button>
             </StackLayout>
 
@@ -48,6 +48,11 @@
         },
         created() {
             this.$store.dispatch("loadLecturers");
+        },
+        methods: {
+            editLecturer: function ({ item }) {
+                this.$navigator.navigate("/editLecturer", { props: { lecturer: item } });
+            }
         }
     }
 </script>

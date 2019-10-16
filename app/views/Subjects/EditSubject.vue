@@ -49,15 +49,17 @@
             this.editedSubject = this.subject;
             this.$store.dispatch("loadLecturers")
                 .then(() => {
-                    const lecturer = this.lecturer(this.subject.lecturer);
-                    if(lecturer)
-                        this.editedSubject = {
-                            ...this.editedSubject,
-                            lecturer: {
-                                ...lecturer,
-                                toString: () => `${lecturer.name} ${lecturer.surname}`
-                            }
+                    const lecturer = this.lecturer(this.subject.lecturer) || {
+                        name: "Brak",
+                        surname: "Danych"
+                    };
+                    this.editedSubject = {
+                        ...this.editedSubject,
+                        lecturer: {
+                            ...lecturer,
+                            toString: () => `${lecturer.name} ${lecturer.surname}`
                         }
+                    }
                 });
         },
         methods: {
@@ -67,7 +69,7 @@
             },
             removeSubject: function () {
                 confirm({
-                    title: "Usuwanie przedmiotu",
+                    title: "Potwierdzenie akcji",
                     message: "Czy na pewno chcesz usunąć ten przedmiot ?",
                     okButtonText: "Tak",
                     cancelButtonText: "Nie"

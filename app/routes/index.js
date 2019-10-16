@@ -4,6 +4,7 @@ import AddNewSubject from "~/views/Subjects/AddNewSubject.vue";
 import EditSubject from "~/views/Subjects/EditSubject";
 import Lecturers from "~/views/Lecturers/Lecturers.vue";
 import AddNewLecturer from "~/views/Lecturers/AddNewLecturer";
+import EditLecturer from "~/views/Lecturers/EditLecturer";
 
 
 export default {
@@ -41,6 +42,12 @@ export default {
         component: AddNewLecturer,
         meta: {
             name: 'AddNewLecturer'
+        }
+    },
+    '/editLecturer': {
+        component: EditLecturer,
+        meta: {
+            name: 'EditLecturer'
         }
     }
 }

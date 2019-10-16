@@ -25,7 +25,7 @@
                 </v-template>
             </ListView>
             <StackLayout v-else>
-                <Label text="Brak zapisanych przedmiotów !" class="text-center fs-24"></Label>
+                <Label text="Brak zapisanych przedmiotów !" class="text-center fs-24" textWrap="true"></Label>
                 <Button text="Dodaj nowy przedmiot" class="btn mt-10" @tap="$navigator.navigate('/addNewSubject')"></Button>
             </StackLayout>
 

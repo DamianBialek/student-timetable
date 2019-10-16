@@ -11,6 +11,15 @@ export default {
         addNewLecturer(state, payload) {
             state.lecturers.push(payload);
         },
+        updateLecturers(state, payload) {
+            Vue.set(state, 'lecturers', [
+                ...state.lecturers.filter(({ id }) => id !== payload.id),
+                payload,
+            ]);
+        },
+        removeLecturer(state, payload) {
+            Vue.set(state, 'lecturers', [...state.lecturers.filter(({ id }) => id !== payload.id)]);
+        }
     },
     actions: {
         createLecturersTable({ getters }) {
@@ -32,6 +41,16 @@ export default {
                     console.log("INSERT ERROR", error);
                 });
         },
+        updateLecturer({ commit, getters }, lecturer) {
+            const db = getters.db;
+            db.execSQL("UPDATE lecturers SET `name` = ?, `surname` = ? WHERE `id` = ? ", [lecturer.name, lecturer.surname, lecturer.id])
+                .then(() => {
+                    commit("updateLecturers", lecturer);
+                    console.log("Success update lecturer !");
+                }, error => {
+                    console.log("UPDATE ERROR", error);
+                });
+        },
         loadLecturers({ commit, getters }) {
             const db = getters.db;
             return db.all("SELECT `id`, `name`, `surname` FROM lecturers", [])
@@ -39,6 +58,16 @@ export default {
                     commit("loadLecturers", result);
                 }, error => {
                     console.log("SELECT ERROR", error);
+                });
+        },
+        removeLecturer({ commit, getters }, lecturer) {
+            const db = getters.db;
+            db.execSQL("DELETE FROM lecturers WHERE `id` = ? ", [lecturer.id])
+                .then(() => {
+                    commit("removeLecturer", lecturer);
+                    console.log("Success remove lecturer !");
+                }, error => {
+                    console.log("DELETE ERROR", error);
                 });
         }
     },
