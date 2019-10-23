@@ -14,6 +14,9 @@
                 <GridLayout :class="['sidedrawer-list-item', {selected: currentRoute === 'Lecturers'}]">
                     <Label @tap="navigate('/lecturers')" col="0" text="Wykładowcy" />
                 </GridLayout>
+                <GridLayout :class="['sidedrawer-list-item', {selected: currentRoute === 'Notes'}]">
+                    <Label @tap="navigate('/notes')" col="0" text="Notatki" />
+                </GridLayout>
             </StackLayout>
         </ScrollView>
     </GridLayout>

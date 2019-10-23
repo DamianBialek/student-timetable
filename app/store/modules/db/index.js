@@ -20,6 +20,7 @@ export default {
                     commit("setDb", db);
                     dispatch("createSubjectsTable");
                     dispatch("createLecturersTable");
+                    dispatch("createNotesTable");
                 }
             }, (error) => {
                 console.log("OPEN DB ERROR", error);

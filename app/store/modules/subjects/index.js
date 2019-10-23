@@ -72,5 +72,6 @@ export default {
     },
     getters: {
         subjects: state => state.subjects,
+        subject: state => (id) => state.subjects.find(subject => subject.id === id),
     }
 }

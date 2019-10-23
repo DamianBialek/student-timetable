@@ -9,24 +9,24 @@
                         <Label class="bar"></Label>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout row="0" col="1" class="p-10 text-center">
-                    <Label text="Przedmioty" class="fs-18"></Label>
+                <StackLayout row="0" col="1" class="px-10 text-center va-center">
+                    <Label text="Notatki" class="fs-18"></Label>
                 </StackLayout>
-                <StackLayout @tap="$navigator.navigate('/addNewSubject')" row="0" col="2" class="px-15"
+                <StackLayout @tap="$navigator.navigate('/addNewNote')" row="0" col="2" class="px-15"
                              verticalAlignment="center">
                     <FontIcon class="fa fas" name="fa-plus"></FontIcon>
                 </StackLayout>
             </GridLayout>
         </AppActionBar>
         <StackLayout orientation="vertical" class="p-15" height="100%">
-            <ListView v-if="subjects.length" class="list-group" for="subject in subjects" separatorColor="transparent" @itemTap="editSubject">
+            <ListView v-if="notes.length" class="list-group" for="note in notes" separatorColor="transparent" @itemTap="editNote">
                 <v-template>
-                    <Label :text="subject.name" class="subject-name py-10" textWrap="true"></Label>
+                    <Label :text="note.name" class="subject-name py-10" textWrap="true"></Label>
                 </v-template>
             </ListView>
             <StackLayout v-else>
-                <Label text="Brak zapisanych przedmiotów !" class="text-center fs-24" textWrap="true"></Label>
-                <Button text="Dodaj nowy przedmiot" class="btn mt-10" @tap="$navigator.navigate('/addNewSubject')"></Button>
+                <Label text="Brak zapisanych notatek !" class="text-center fs-24" textWrap="true"></Label>
+                <Button text="Dodaj nową notatkę" class="btn mt-10" @tap="$navigator.navigate('/addNewNote')"></Button>
             </StackLayout>
 
         </StackLayout>
@@ -37,21 +37,21 @@
     import AppActionBar from "~/components/AppActionBar.vue";
 
     export default {
-        name: "Subjects",
+        name: "Notes",
         components: {
             AppActionBar
         },
         computed: {
-            subjects() {
-                return this.$store.getters.subjects;
+            notes() {
+                return this.$store.getters.notes;
             }
         },
         created() {
-            this.$store.dispatch("loadSubjects");
+            this.$store.dispatch("loadNotes");
         },
         methods: {
-            editSubject: function ({ item }) {
-                this.$navigator.navigate("/editSubject", { props: { subject: item } });
+            editNote: function ({ item }) {
+                this.$navigator.navigate("/editNote", { props: { note: item} })
             }
         }
     }

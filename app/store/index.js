@@ -6,6 +6,7 @@ Vue.use(Vuex);
 import db from './modules/db';
 import subjects from './modules/subjects';
 import lecturers from './modules/lecturers';
+import notes from './modules/notes';
 
 const store = new Vuex.Store({
     state: {
@@ -30,7 +31,8 @@ const store = new Vuex.Store({
     modules: {
         db,
         subjects,
-        lecturers
+        lecturers,
+        notes
     }
 });
 
